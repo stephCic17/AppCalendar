@@ -1,0 +1,348 @@
+<ion-view view-title=Ciconia name=calendar-view>
+  <ion-content class=padding> 
+    <h5>{{NumberCalendar}} <span ng-bind="nbSemaine"></span> {{Weeks}}</h5>
+    <h5>{{delivery}}<span ng-bind="termeDate"></span></h5>
+    <h6>{{Calendar}}</h6>
+ 
+     <div class=avenir ng-if="LastMenstruationTimestamp > today">
+  <button class="accordion" ng-click=changeAA()>
+    {{LastM}}<span ng-bind=LastMenstruationDate></span>
+  </button>
+  <div class="panel" ng-hide=EhideAA>
+    <p><span ng-bind=LastMenstruationDetail></span></p>
+  </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="LastMenstruationTimestamp < today">
+  <button class="accordion" ng-click=changeAA()>
+    {{LastM}}
+    <span ng-bind=LastMenstruationDate></span>
+  </button>
+  <div class="panel" ng-hide=EhideAA>
+  <p><span ng-bind=LastMenstruationDetail></span></p>
+  </div>
+</div>
+
+     <div class=avenir ng-if="BeginOfPRegnancyTimestamp > today">
+  <button class="accordion" ng-click=changeAAA()>
+    {{BeginOfP}}<span ng-bind=BeginOfPRegnancyDate></span>
+  </button>
+  <div class="panel" ng-hide=EhideAAA>
+    <p><span ng-bind=BeginOfPRegnancyDetail></span></p>
+  </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="BeginOfPRegnancyTimestamp < today">
+  <button class="accordion" ng-click=changeAAA()>
+    {{BeginOfP}}
+    <span ng-bind=BeginOfPRegnancyDate></span>
+  </button>
+  <div class="panel" ng-hide=EhideAAA>
+  <p><span ng-bind=BeginOfPRegnancyDetail></span></p>
+  </div>
+</div>
+
+
+    <div class=avenir ng-if="ReliabilityTestTimestamp > today">
+  <button class="accordion" ng-click=changeA()>
+    {{ReliabilityT}}<span ng-bind=ReliabilityTestDate></span>
+  </button>
+  <div class="panel" ng-hide=EhideA>
+    <p><span ng-bind=ReliabilityTestDetail></span></p>
+  </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="ReliabilityTestTimestamp < today">
+  <button class="accordion" ng-click=changeA()>
+    {{ReliabilityTPast}}
+    <span ng-bind=ReliabilityTestDate></span>
+  </button>
+  <div class="panel" ng-hide=EhideA>
+  <p><span ng-bind=ReliabilityTestDetail></span></p>
+  </div>
+</div>
+
+
+<div class="avenir" ng-if="FirstConsultEndTimestamp > today">
+  <button class="accordion" ng-click=changeB()>
+    {{FirstC}} <span ng-bind="FirstConsultStartDate"></span>{{And}}<span ng-bind="FirstConsultEndDate"></span>
+  </button>
+ <div class="panel" ng-hide=EhideB>
+   <span ng-bind="FirstConsultDetail"></span>
+  </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="FirstConsultEndTimestamp < today">
+  <button class="accordion" ng-click=changeB()>
+   {{FirstCPast}} <span ng-bind="FirstConsultEndDate"></span>
+  </button>
+ <div class="panel" ng-hide=EhideB>
+   <span ng-bind="FirstConsultDetail"></span>
+  </div>
+</div>
+
+
+<div class="avenir" ng-if="FirstEchoEndTimestamp > today">
+  <button class="accordion" ng-click=changeC()>
+    {{FirstE}}<span ng-bind="FirstEchoStartDate"></span>{{And}}<span ng-bind="FirstEchoEndDate"></span>
+  </button>
+  <div class="panel" ng-hide=EhideC>
+    <span ng-bind="FirstEchoDetail"></span>
+  </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="FirstEchoEndTimestamp < today">
+  <button class="accordion" ng-click=changeC()>
+    {{FirstEPast}}<span ng-bind="FirstEchoEndDate"></span>
+  </button>
+ <div class="panel" ng-hide=EhideC>
+   <span ng-bind="FirstEchoDetail"></span>
+  </div>
+</div>
+
+
+<div class="avenir" ng-if="FirstPrenatalCareEndTimestamp > today">
+  <button class="accordion" ng-click=changeD()>
+    {{FirstPC}}<span ng-bind="FirstPrenatalCareStartDate"></span>{{And}}<span ng-bind="FirstPrenatalCareEndDate"></span>
+  </button>
+ <div class="panel" ng-hide=EhideD>
+   <span ng-bind="FirstPrenatalCareDetail"></span>
+  </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="FirstPrenatalCareEndTimestamp < today">
+  <button class="accordion" ng-click=changeD()> 
+    {{FirstPCPast}}<span ng-bind="FirstPrenatalCareEndDate"></span>
+  </button>
+  <div class="panel" ng-hide=EhideD>
+   <span ng-bind="FirstPrenatalCareDetail"></span>
+  </div>
+</div>
+
+
+<div class="avenir" ng-if="SecondPrenatalCareEndTimestamp > today">
+    <button class="accordion" ng-click=changeE()>
+      {{SecondPC}}<span ng-bind="SecondPrenatalCareStartDate"></span>{{And}}<span ng-bind="SecondPrenatalCareEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideE>
+      <span ng-bind="SecondPrenatalCareDetail"></span>
+    </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="SecondPrenatalCareEndTimestamp < today">
+    <button class="accordion" ng-click=changeE()>
+      {{SecondPCPast}}<span ng-bind="SecondPrenatalCareEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideE>
+      <span ng-bind="SecondPrenatalCareDetail"></span>
+    </div>
+</div>
+
+
+<div class="avenir" ng-if="BilanBuccoTimestamp > today">
+    <button class="accordion" ng-click=changeF()>
+      {{BilanB}}<span ng-bind=BilanBuccoDate></span>
+    </button>
+    <div class="panel" ng-hide=EhideF>
+     <span ng-bind="BilanBuccoDetail"></span>
+    </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="BilanBuccoTimestamp < today">
+    <button class="accordion" ng-click=changeF()>
+      {{BilanB}}<span ng-bind=BilanBuccoDate></span>
+    </button>
+    <div class="panel" ng-hide=EhideF>
+      <span ng-bind="BilanBuccoDetail"></span>
+    </div>
+</div>
+
+
+<div class="avenir" ng-if="SecondEchoEndTimestamp > today">
+    <button class="accordion" ng-click=changeG()>
+      {{SecondE}}<span ng-bind="SecondEchoStartDate"></span> {{And}}<span ng-bind="SecondEchoEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideG>
+      <span ng-bind="SecondEchoDetail"></span>
+    </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="SecondEchoEndTimestamp < today">
+    <button class="accordion" ng-click=changeG()>
+       {{SecondEPAst}}<span ng-bind="SecondEchoEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideG>
+       <span ng-bind="SecondEchoDetail"></span>
+    </div>
+</div>
+
+
+<div class="avenir" ng-if="ThirdPrenatalCareEndTimestamp > today">
+    <button class="accordion" ng-click=changeH()>
+      {{ThirdPC}}<span ng-bind="ThirdPrenatalCareStartDate"></span>{{And}}<span ng-bind="ThirdPrenatalCareEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideH>
+      <span ng-bind="ThirdPrenatalCareDetail"></span>
+    </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="ThirdPrenatalCareEndTimestamp < today">
+    <button class="accordion" ng-click=changeH()>
+      {{ThirdPCPast}}<span ng-bind="ThirdPrenatalCareEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideH>
+      <span ng-bind="ThirdPrenatalCareDetail"></span>
+    </div>
+</div>
+
+
+<div class="avenir" ng-if="diabeteEndTimestamp > today">
+    <button class="accordion" ng-click=changeI()>
+      {{diabete}}<span ng-bind="diabeteStartDate"></span>{{And}}<span ng-bind="diabeteEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideI>
+      <span ng-bind="diabeteDetail"></span>
+    </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="diabeteEndTimestamp < today">
+    <button class="accordion" ng-click=changeI()>
+      {{diabetePast}}<span ng-bind="diabeteEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideI>
+      <span ng-bind="diabeteDetail"></span>
+    </div>
+</div>
+
+
+<div class="avenir" ng-if="FourPrenatalCareEndTimestamp > today">
+    <button class="accordion" ng-click=changeJ()>
+      {{FourPC}}<span ng-bind="FourPrenatalCareStartDate"></span>{{And}}<span ng-bind="FourPrenatalCareEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideJ>
+      <span ng-bind="FourPrenatalCareDetail"></span>
+    </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="FourPrenatalCareEndTimestamp < today">
+    <button class="accordion" ng-click=changeJ()>
+    {{FourPCPast}}<span ng-bind="FourPrenatalCareEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideJ>
+      <span ng-bind="FourPrenatalCareDetail"></span>
+    </div>
+</div>
+
+<div class="avenir" ng-if="FivePrenatalCareEndTimestamp > today">
+    <button class="accordion" ng-click=changeK()>
+      {{FivePC}}<span ng-bind="FivePrenatalCareStartDate"></span>{{And}}<span ng-bind="FivePrenatalCareEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideK>
+      <span ng-bind="FivePrenatalCareDetail"></span>
+    </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="FivePrenatalCareEndTimestamp < today">
+    <button class="accordion" ng-click=changeK()>
+     {{FivePCPast}}<span ng-bind="FivePrenatalCareEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideK>
+      <span ng-bind="FivePrenatalCareDetail"></span>
+    </div>
+</div>
+
+<div class="avenir" ng-if="ThirdEchoEndTimestamp > today">
+    <button class="accordion" ng-click=changeL()>
+      {{ThirdE}}<span ng-bind="ThirdEchoStartDate"></span>{{And}}<span ng-bind="ThirdEchoEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideL>
+      <span ng-bind="ThirdEchoDetail"></span>
+    </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="ThirdEchoEndTimestamp < today">
+    <button class="accordion" ng-click=changeL()>
+     {{ThirdEPast}}<span ng-bind="ThirdEchoEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideL>
+      <span ng-bind="ThirdEchoDetail"></span>
+    </div>
+</div>
+
+
+<div class="avenir" ng-if="SixthPrenatalCareEndTimestamp > today">
+    <button class="accordion" ng-click=changeM()>
+      {{SixthPC}}<span ng-bind="SixthPrenatalCareStartDate"></span>{{And}}<span ng-bind="SixthPrenatalCareEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideM>
+      <span ng-bind="SixthPrenatalCareDetail"></span>
+    </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="SixthPrenatalCareEndTimestamp < today">
+    <button class="accordion" ng-click=changeM()>
+     {{SixthPCPast}}<span ng-bind="SixthPrenatalCareEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideM>
+      <span ng-bind="SixthPrenatalCareDetail"></span>
+    </div>
+</div>
+
+
+<div class="avenir" ng-if="AnesthetistConsultEndTimestamp > today">
+    <button class="accordion" ng-click=changeN())>
+      {{AnesthetistC}}<span ng-bind="AnesthetistConsultStartDate"></span>{{And}}<span ng-bind="AnesthetistConsultEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideN>
+      <span ng-bind="AnesthetistConsultDetail"></span>
+    </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="AnesthetistConsultEndTimestamp < today">
+    <button class="accordion" ng-click=changeN())>
+     {{AnesthetistCPast}}<span ng-bind="AnesthetistConsultEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideN>
+      <span ng-bind="AnesthetistConsultDetail"></span>
+    </div>
+</div>
+
+<div class="avenir" ng-if="SeventhPrenatalCareEndTimestamp > today">
+    <button class="accordion" ng-click=changeO())>
+      {{SeventhPC}}<span ng-bind="SeventhPrenatalCareStartDate"></span>{{And}}<span ng-bind="SeventhPrenatalCareEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideO>
+      <span ng-bind="SeventhPrenatalCareDetail"></span>
+    </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="SeventhPrenatalCareEndTimestamp < today">
+    <button class="accordion" ng-click=changeO())>
+     {{SeventhPCPast}}<span ng-bind="SeventhPrenatalCareEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideO>
+      <span ng-bind="SeventhPrenatalCareDetail"></span>
+    </div>
+</div>
+
+<div class="avenir" ng-if="DateOfTermEndTimestamp > today">
+    <button class="accordion" ng-click=changeP()>
+      {{DateOfT}}<span ng-bind="DateOfTermStartDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideP>
+      <span ng-bind="DateOfTermDetail"></span>
+    </div>
+</div>
+<!--   -->
+<div class="passe" ng-if="DateOfTermEndTimestamp < today">
+    <button class="accordion" ng-click=changeP()>
+     {{DateOfTPast}}<span ng-bind="DateOfTermEndDate"></span>
+    </button>
+    <div class="panel" ng-hide=EhideP>
+      <span ng-bind="DateOfTermDetail"></span>
+    </div>
+</div>
+
+
+  </ion-content>
+  </ion-view>

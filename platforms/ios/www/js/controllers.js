@@ -9,6 +9,677 @@ angular.module('starter.controllers', [])
       $state.go('record');
     }
 })
+.controller('LaunchCtrl', function($scope, $state, $http, $rootScope, $ionicSideMenuDelegate){
+  $scope.data = {};
+  $scope.test = 
+    url = ""
+    $scope.submit = function(gros) {
+  
+      // Date des dernieres regles //
+      $rootScope.LastMenstruation = new Date(gros);
+      $rootScope.LastMenstruationTimestamp = $rootScope.LastMenstruation.getTime();
+      $rootScope.LastMenstruationDate = $rootScope.LastMenstruation.toLocaleDateString();
+      // Date de début de grossesse theorique //
+      $rootScope.BeginOfPregnancy = new Date($rootScope.LastMenstruation.getTime() + 1209600000);
+      $rootScope.BeginOfPregnancyTimestamp = $rootScope.BeginOfPregnancy.getTime();
+      $rootScope.BeginOfPregnancyDate = $rootScope.BeginOfPregnancy.toLocaleDateString();
+
+      $scope.calcul();
+      }
+    $scope.ModifDate = function(grosMod) {
+      $rootScope.BeginOfPregnancy = new Date(grosMod);
+      $rootScope.BeginOfPregnancyTimestamp = $rootScope.BeginOfPregnancy.getTime();
+      $rootScope.BeginOfPregnancyDate = $rootScope.BeginOfPregnancy.toLocaleDateString();
+      $scope.calcul();
+    }
+    $scope.calcul = function(){
+      //////////////////    Calendrier Medical ////////////////////
+    
+      // Date de fiabilite Test de grossesse //
+      $rootScope.ReliabilityTest = new Date($rootScope.BeginOfPregnancy.getTime() + 2246400000);
+      $rootScope.ReliabilityTestTimestamp = $rootScope.ReliabilityTest.getTime();
+      $rootScope.ReliabilityTestDate = $rootScope.ReliabilityTest.toLocaleDateString();
+      
+      // Date 1er consultation//
+      $rootScope.FirstConsultStart = new Date($rootScope.BeginOfPregnancy.getTime() + 2246400000);
+      $rootScope.FirstConsultEnd = new Date($rootScope.BeginOfPregnancy.getTime() + 3456000000);
+      $rootScope.FirstConsultStartTimestamp = $rootScope.FirstConsultStart.getTime();
+      $rootScope.FirstConsultEndTimestamp = $rootScope.FirstConsultEnd.getTime();
+      $rootScope.FirstConsultStartDate = $rootScope.FirstConsultStart.toLocaleDateString();
+      $rootScope.FirstConsultEndDate = $rootScope.FirstConsultEnd.toLocaleDateString();
+      
+      // Date 1er Echo //
+      $rootScope.FirstEchoStart = new Date($rootScope.BeginOfPregnancy.getTime() + 5702400000);
+      $rootScope.FirstEchoEnd = new Date($rootScope.BeginOfPregnancy.getTime() + 7257600000);
+      $rootScope.FirstEchoStartDate = $rootScope.FirstEchoStart.toLocaleDateString();
+      $rootScope.FirstEchoEndDate = $rootScope.FirstEchoEnd.toLocaleDateString();
+      $rootScope.FirstEchoStartTimestamp = $rootScope.FirstEchoStart.getTime();
+      $rootScope.FirstEchoEndTimestamp = $rootScope.FirstEchoEnd.getTime();
+    
+      //Date 1er entretien prenat
+      $rootScope.FirstPrenatalCareStart = new Date($rootScope.BeginOfPregnancy.getTime() + 7344000000 );
+      $rootScope.FirstPrenatalCareEnd = new Date($rootScope.BeginOfPregnancy.getTime() + 8553600000 );
+      $rootScope.FirstPrenatalCareStartDate = $rootScope.FirstPrenatalCareStart.toLocaleDateString();
+      $rootScope.FirstPrenatalCareStartTimestamp = $rootScope.FirstPrenatalCareStart.getTime();
+      $rootScope.FirstPrenatalCareEndDate = $rootScope.FirstPrenatalCareEnd.toLocaleDateString();
+      $rootScope.FirstPrenatalCareEndTimestamp = $rootScope.FirstPrenatalCareEnd.getTime();
+      
+      //Date 2eme entretien prenat
+      $rootScope.SecondPrenatalCareStart = new Date($rootScope.BeginOfPregnancy.getTime() + 7862400000 );
+      $rootScope.SecondPrenatalCareEnd = new Date($rootScope.BeginOfPregnancy.getTime() + 9072000000 );
+      $rootScope.SecondPrenatalCareStartDate = $rootScope.SecondPrenatalCareStart.toLocaleDateString();
+      $rootScope.SecondPrenatalCareStartTimestamp = $rootScope.SecondPrenatalCareStart.getTime();
+      $rootScope.SecondPrenatalCareEndDate = $rootScope.SecondPrenatalCareEnd.toLocaleDateString();
+      $rootScope.SecondPrenatalCareEndTimestamp = $rootScope.SecondPrenatalCareEnd.getTime();
+
+
+      //Bilan
+      $rootScope.BilanBucco = new Date($rootScope.BeginOfPregnancy.getTime() + 1.0368e+10);
+      $rootScope.BilanBuccoDate = $rootScope.BilanBucco.toLocaleDateString();
+      $rootScope.BilanBuccoTimestamp = $rootScope.BilanBucco.getTime();
+      
+      // Date 2eme Echo //
+      $rootScope.SecondEchoStart = new Date($rootScope.BeginOfPregnancy.getTime() + 1.10592e+10);
+      $rootScope.SecondEchoEnd = new Date($rootScope.BeginOfPregnancy.getTime() + 1.21824e+10);
+      $rootScope.SecondEchoStartDate = $rootScope.SecondEchoStart.toLocaleDateString();
+      $rootScope.SecondEchoEndDate = $rootScope.SecondEchoEnd.toLocaleDateString();
+      $rootScope.SecondEchoStartTimestamp = $rootScope.SecondEchoStart.getTime();
+      $rootScope.SecondEchoEndTimestamp = $rootScope.SecondEchoEnd.getTime();   
+
+      //Date 3eme entretien prenat
+      $rootScope.ThirdPrenatalCareStart = new Date($rootScope.BeginOfPregnancy.getTime() + 1.10592e+10);
+      $rootScope.ThirdPrenatalCareEnd = new Date($rootScope.BeginOfPregnancy.getTime() + 1.21824e+10);
+      $rootScope.ThirdPrenatalCareStartDate = $rootScope.ThirdPrenatalCareStart.toLocaleDateString();
+      $rootScope.ThirdPrenatalCareStartTimestamp = $rootScope.ThirdPrenatalCareStart.getTime();
+      $rootScope.ThirdPrenatalCareEndDate = $rootScope.ThirdPrenatalCareEnd.toLocaleDateString();
+      $rootScope.ThirdPrenatalCareEndTimestamp = $rootScope.ThirdPrenatalCareEnd.getTime();
+      
+      //Diabete de grossesse
+      $rootScope.diabeteStart = new Date($rootScope.BeginOfPregnancy.getTime() + 1.1664e+10);
+      $rootScope.diabeteEnd = new Date($rootScope.BeginOfPregnancy.getTime() + 1.52928e+10);
+      $rootScope.diabeteStartDate = $rootScope.diabeteStart.toLocaleDateString();
+      $rootScope.diabeteStartTimestamp = $rootScope.diabeteStart.getTime();
+      $rootScope.diabeteEndDate = $rootScope.diabeteEnd.toLocaleDateString();
+      $rootScope.diabeteEndTimestamp = $rootScope.diabeteEnd.getTime();
+
+      //Date 4 entretien prenat
+      $rootScope.FourPrenatalCareStart = new Date($rootScope.BeginOfPregnancy.getTime() + 1.31328e+10);
+      $rootScope.FourPrenatalCareEnd = new Date($rootScope.BeginOfPregnancy.getTime() + 1.43424e+10);
+      $rootScope.FourPrenatalCareStartDate = $rootScope.FourPrenatalCareStart.toLocaleDateString();
+      $rootScope.FourPrenatalCareStartTimestamp = $rootScope.FourPrenatalCareStart.getTime();
+      $rootScope.FourPrenatalCareEndDate = $rootScope.FourPrenatalCareEnd.toLocaleDateString();
+      $rootScope.FourPrenatalCareEndTimestamp = $rootScope.FourPrenatalCareEnd.getTime();
+    
+      //Date 5 entretien prenat
+      $rootScope.FivePrenatalCareStart = new Date($rootScope.BeginOfPregnancy.getTime() + 1.57248e+10);
+      $rootScope.FivePrenatalCareEnd = new Date($rootScope.BeginOfPregnancy.getTime() + 1.69344e+10);
+      $rootScope.FivePrenatalCareStartDate = $rootScope.FivePrenatalCareStart.toLocaleDateString();
+      $rootScope.FivePrenatalCareStartTimestamp = $rootScope.FivePrenatalCareStart.getTime();
+      $rootScope.FivePrenatalCareEndDate = $rootScope.FivePrenatalCareEnd.toLocaleDateString();
+      $rootScope.FivePrenatalCareEndTimestamp = $rootScope.FivePrenatalCareEnd.getTime();
+    
+      // Date 3eme Echo //
+      $rootScope.ThirdEchoStart = new Date($rootScope.BeginOfPregnancy.getTime() + 1.71072e+10);
+      $rootScope.ThirdEchoEnd = new Date($rootScope.BeginOfPregnancy.getTime() + 1.82304e+10);
+      $rootScope.ThirdEchoStartDate = $rootScope.ThirdEchoStart.toLocaleDateString();
+      $rootScope.ThirdEchoStartTimestamp = $rootScope.ThirdEchoStart.getTime();
+      $rootScope.ThirdEchoEndDate = $rootScope.ThirdEchoEnd.toLocaleDateString();
+      $rootScope.ThirdEchoEndTimestamp = $rootScope.ThirdEchoEnd.getTime();
+
+      //Date 6 entretien prenat
+      $rootScope.SixthPrenatalCareStart = new Date($rootScope.BeginOfPregnancy.getTime() + 1.84032e+10);
+      $rootScope.SixthPrenatalCareEnd = new Date($rootScope.BeginOfPregnancy.getTime() + 1.96128e+10);
+      $rootScope.SixthPrenatalCareStartDate = $rootScope.SixthPrenatalCareStart.toLocaleDateString();
+      $rootScope.SixthPrenatalCareStartTimestamp = $rootScope.SixthPrenatalCareStart.getTime();
+      $rootScope.SixthPrenatalCareEndDate = $rootScope.SixthPrenatalCareEnd.toLocaleDateString();
+      $rootScope.SixthPrenatalCareEndTimestamp = $rootScope.SixthPrenatalCareEnd.getTime();
+    
+      //Consultation anesthesiste
+      $rootScope.AnesthetistConsultStart = new Date($rootScope.BeginOfPregnancy.getTime() + 1.95264e+10);
+      $rootScope.AnesthetistConsultEnd = new Date($rootScope.BeginOfPregnancy.getTime() + 2.00448e+10);
+      $rootScope.AnesthetistConsultStartDate = $rootScope.AnesthetistConsultStart.toLocaleDateString();
+      $rootScope.AnesthetistConsultStartTimestamp = $rootScope.AnesthetistConsultStart.getTime();
+      $rootScope.AnesthetistConsultEndDate = $rootScope.AnesthetistConsultEnd.toLocaleDateString();
+      $rootScope.AnesthetistConsultEndTimestamp = $rootScope.AnesthetistConsultEnd.getTime();
+      
+      //Date 7 entretien prenat
+      $rootScope.SeventhPrenatalCareStart = new Date($rootScope.BeginOfPregnancy.getTime() + 2.10816e+10);
+      $rootScope.SeventhPrenatalCareEnd = new Date($rootScope.BeginOfPregnancy.getTime() + 2.22912e+10);
+      $rootScope.SeventhPrenatalCareStartDate = $rootScope.SeventhPrenatalCareStart.toLocaleDateString();
+      $rootScope.SeventhPrenatalCareStartTimestamp = $rootScope.SeventhPrenatalCareStart.getTime();
+      $rootScope.SeventhPrenatalCareEndDate = $rootScope.SeventhPrenatalCareEnd.toLocaleDateString();
+      $rootScope.SeventhPrenatalCareEndTimestamp = $rootScope.SeventhPrenatalCareEnd.getTime();
+
+      // Date terme theorique
+      $rootScope.DateOfTerm = new Date($rootScope.BeginOfPregnancy.getTime() + 2.36736e+10);    
+      $rootScope.DateOfTermDate = $rootScope.DateOfTerm.toLocaleDateString();
+      $rootScope.DateOfTermTimestamp = $rootScope.DateOfTerm.getTime();
+
+      //Nombre de semaines de grossesse 
+      $rootScope.WeekPregnant = Math.round(((new Date().getTime() - $rootScope.LastMenstruation.getTime()) / (1000 * 60 * 60 * 24)) / 7);
+
+      // Calendrier Administratif
+
+      // Pregnant Declaration
+      $rootScope.PregnantDeclaration = new Date($rootScope.BeginOfPregnancy.getTime() + 9158400000);
+      $rootScope.PregnantDeclarationDate = $rootScope.PregnantDeclaration.toLocaleDateString();
+      $rootScope.PregnantDeclarationTimestamp = $rootScope.PregnantDeclaration.getTime();
+
+      //Employer Information
+      $rootScope.EmployerInformation = "N/A";
+
+      //Choosing Your Maternity
+      $rootScope.YourMaternity = new Date($rootScope.BeginOfPregnancy.getTime() + 9158400000);
+      $rootScope.YourMaternityDate = $rootScope.YourMaternity.toLocaleDateString();
+      $rootScope.YourMaternityTimestamp = $rootScope.YourMaternity.getTime();
+
+      //Information on childcare arrangements
+
+      //Information on aid
+
+      //Updating Your Vital Card
+      $rootScope.VitalCard = new Date($rootScope.BeginOfPregnancy.getTime() + 1.45152e+10);
+      $rootScope.VitalCardDate = $rootScope.VitalCard.toLocaleDateString();
+      $rootScope.VitalCardimestamp = $rootScope.VitalCard.getTime();
+
+      //Paternity Recognition
+      $rootScope.PaternityRecognition = new Date($rootScope.BeginOfPregnancy.getTime() + 1.2096e+10);
+      $rootScope.PaternityRecognitionDate = $rootScope.PaternityRecognition.toLocaleDateString();
+      $rootScope.PaternityRecognitionTimestamp = $rootScope.PaternityRecognition.getTime();
+
+      //Maternity Leave
+      $rootScope.MaternityLeave = new Date($rootScope.BeginOfPregnancy);
+      $rootScope.MaternityLeaveDate = $rootScope.MaternityLeave.toLocaleDateString();
+      $rootScope.MaternityLeaveTimestamp = $rootScope.MaternityLeave.getTime();
+
+      //Inscription on the list of a nursery
+      $rootScope.InscriptionNursery = new Date($rootScope.BeginOfPregnancyTimestamp + 1.45152e+10);
+      $rootScope.InscriptionNurseryDate = $rootScope.InscriptionNursery.toLocaleDateString();
+      $rootScope.InscriptionNurseryTimestamp = $rootScope.InscriptionNursery.getTime();
+
+      //My Maternity Insurance Plan
+
+      //Deadline for air travel
+      $rootScope.DeadlineAirTravel = new Date($rootScope.BeginOfPregnancyTimestamp + 1.8144e+10);
+      $rootScope.DeadlineAirTravelDate = $rootScope.DeadlineAirTravel.toLocaleDateString();
+      $rootScope.DeadlineAirTravelTimestamp = $rootScope.DeadlineAirTravel.getTime();
+
+      //Declaration of birth
+
+      //Birth registration with organizations
+
+      //End of maternity leave
+
+      //Paternity leave
+
+
+
+      $state.go('app.toxoAsk');
+    }
+
+
+})
+
+.controller('ToxoAskCtrl', function($scope, $state, $http, $rootScope, $ionicSideMenuDelegate){
+  $scope.data = {};
+  $scope.test = 
+  url = ""
+
+  $scope.yes = function(){
+    $rootScope.Toxo = 1;
+    $state.go('app.Mcalendar');
+  }
+  $scope.no = function(){
+    $rootScope.Toxo = 0;
+   $state.go('app.Mcalendar'); 
+    //$scope.planificationNotif();
+  }
+  $scope.IDontKnow = function(){
+    $rootScope.Toxo = 2;
+    $state.go('app.Mcalendar');
+    //$scope.planificationNotif();
+  }
+ /* $scope.planificationNotif = function(){
+    $rootScope.ToxoDateOne =  ($rootScope.BeginOfPregnancyTimestamp + 2246400000) - new Date().getTime() ;
+    $rootScope.ToxoDateTwo = ($rootScope.BeginOfPregnancyTimestamp + 4838400000) - new Date().getTime() ;
+    $rootScope.ToxoDateThree = ($rootScope.BeginOfPregnancyTimestamp + 7430400000) - new Date().getTime() ;
+    $rootScope.ToxoDateFour = ($rootScope.BeginOfPregnancyTimestamp + 1.00224e+10) - new Date().getTime() ;
+    $rootScope.ToxoDateFive = ($rootScope.BeginOfPregnancyTimestamp + 1.26144e+10) - new Date().getTime() ;
+    $rootScope.ToxoDateSix = ($rootScope.BeginOfPregnancyTimestamp + 1.52064e+10) - new Date().getTime() ;
+    $rootScope.ToxoDateSeven = ($rootScope.BeginOfPregnancyTimestamp + 1.77984e+10) - new Date().getTime() ;
+    $rootScope.ToxoDateEight = ($rootScope.BeginOfPregnancyTimestamp + 2.03904e+10) - new Date().getTime() ;
+    if ($rootScope.ToxoDateOne >= 0){
+       }
+
+    if ($rootScope.ToxoDateTwo >= 0){
+      }
+
+    if ($rootScope.ToxoDateThree >= 0){
+     }
+
+    if ($rootScope.ToxoDateFour){
+        }
+
+    if ($rootScope.ToxoDateFive){
+        }
+
+    if ($rootScope.ToxoDateSix){
+    }
+
+    if ($rootScope.ToxoDateSeven){
+    }
+
+    if ($rootScope.ToxoDateHeight){
+    }
+    
+    $state.go('app.Mcalendar');
+  }*/
+})
+
+.controller('MCalendarCtrl', function($scope, $state, $http, $rootScope, $ionicSideMenuDelegate){
+    $scope.data = {};
+    $scope.test = 
+    url = ""
+    $rootScope.today = new Date().getTime();
+    $rootScope.nbSemaine = Math.round(((new Date().getTime() - $rootScope.BeginOfPregnancy.getTime()) / (1000 * 60 * 60 * 24)) / 7);
+    $scope.tes = function(){
+      console.log("test");
+    }
+       $scope.hideA = true;
+       $scope.hideAA = true;
+       $scope.hideAAA = true;
+       $scope.hideB = true;
+       $scope.hideC = true;
+       $scope.hideD = true;
+       $scope.hideE = true;
+       $scope.hideF = true;
+       $scope.hideG = true;
+       $scope.hideH = true;
+       $scope.hideI = true;
+       $scope.hideJ = true;
+       $scope.hideK = true;
+       $scope.hideL = true;
+       $scope.hideM = true;
+       $scope.hideN = true;
+       $scope.hideO = true;
+       $scope.hideP = true;
+
+
+$scope.changeA = function(){
+if ($scope.hideA == false)
+   $scope.hideA = true;
+else
+   $scope.hideA = false;
+}
+$scope.changeAA = function(){
+if ($scope.hideAA == false)
+   $scope.hideAA = true;
+else
+   $scope.hideAA = false;
+}
+$scope.changeAAA = function(){
+if ($scope.hideAAA == false)
+   $scope.hideAAA = true;
+else
+   $scope.hideAAA = false;
+}
+$scope.changeB = function(){
+if ($scope.hideB == false)
+   $scope.hideB = true;
+else
+   $scope.hideB = false;
+}
+$scope.changeC = function(){
+if ($scope.hideC == false)
+   $scope.hideC = true;
+else
+   $scope.hideC = false;
+}
+$scope.changeD = function(){
+if ($scope.hideD == false)
+   $scope.hideD = true;
+else
+   $scope.hideD = false;
+}
+$scope.changeE = function(){
+if ($scope.hideE == false)
+   $scope.hideE = true;
+else
+   $scope.hideE = false;
+}
+$scope.changeF = function(){
+if ($scope.hideF == false)
+   $scope.hideF = true;
+else
+   $scope.hideF = false;
+}
+$scope.changeG = function(){
+if ($scope.hideG == false)
+   $scope.hideG = true;
+else
+   $scope.hideG = false;
+}
+$scope.changeH = function(){
+if ($scope.hideH == false)
+   $scope.hideH = true;
+else
+   $scope.hideH = false;
+}
+$scope.changeI = function(){
+if ($scope.hideI == false)
+   $scope.hideI = true;
+else
+   $scope.hideI = false;
+}
+$scope.changeJ = function(){
+if ($scope.hideJ == false)
+   $scope.hideJ = true;
+else
+   $scope.hideJ = false;
+}
+$scope.changeK = function(){
+if ($scope.hideK == false)
+   $scope.hideK = true;
+else
+   $scope.hideK = false;
+}
+$scope.changeL = function(){
+if ($scope.hideL == false)
+   $scope.hideL = true;
+else
+   $scope.hideL = false;
+}
+$scope.changeM = function(){
+if ($scope.hideM == false)
+   $scope.hideM = true;
+else
+   $scope.hideM = false;
+}
+$scope.changeN = function(){
+if ($scope.hideN == false)
+   $scope.hideN = true;
+else
+   $scope.hideN = false;
+}
+$scope.changeO = function(){
+if ($scope.hideO == false)
+   $scope.hideO = true;
+else
+   $scope.hideO = false;
+}
+$scope.changeP = function(){
+if ($scope.hideP == false)
+   $scope.hideP = true;
+else
+   $scope.hideP = false;
+}
+})
+
+.controller('ACalendarCtrl', function($scope, $state, $http, $rootScope, $ionicSideMenuDelegate){
+    $scope.data = {};
+    $scope.test = 
+    url = ""
+    $rootScope.today = new Date().getTime();
+    $rootScope.nbSemaine = Math.round(((new Date().getTime() - $rootScope.BeginOfPregnancy.getTime()) / (1000 * 60 * 60 * 24)) / 7);
+    $scope.tes = function(){
+      console.log("test");
+    }
+       $scope.AhideA = true;
+       $scope.AhideAA = true;
+       $scope.AhideAAA = true;
+       $scope.AhideB = true;
+       $scope.AhideC = true;
+       $scope.AhideD = true;
+       $scope.AhideE = true;
+       $scope.AhideF = true;
+       $scope.AhideG = true;
+       $scope.AhideH = true;
+       $scope.AhideI = true;
+       $scope.AhideJ = true;
+       $scope.AhideK = true;
+       $scope.AhideL = true;
+       $scope.AhideM = true;
+       $scope.AhideN = true;
+       $scope.AhideO = true;
+       $scope.AhideP = true;
+
+
+$scope.changeA = function(){
+if ($scope.AhideA == false)
+   $scope.AhideA = true;
+else
+   $scope.AhideA = false;
+}
+$scope.changeB = function(){
+if ($scope.AhideB == false)
+   $scope.AhideB = true;
+else
+   $scope.AhideB = false;
+}
+$scope.changeC = function(){
+if ($scope.AhideC == false)
+   $scope.AhideC = true;
+else
+   $scope.AhideC = false;
+}
+$scope.changeD = function(){
+if ($scope.AhideD == false)
+   $scope.AhideD = true;
+else
+   $scope.AhideD = false;
+}
+$scope.changeE = function(){
+if ($scope.AhideE == false)
+   $scope.AhideE = true;
+else
+   $scope.AhideE = false;
+}
+$scope.changeF = function(){
+if ($scope.AhideF == false)
+   $scope.AhideF = true;
+else
+   $scope.AhideF = false;
+}
+$scope.changeG = function(){
+if ($scope.AhideG == false)
+   $scope.AhideG = true;
+else
+   $scope.AhideG = false;
+}
+$scope.changeH = function(){
+if ($scope.AhideH == false)
+   $scope.AhideH = true;
+else
+   $scope.AhideH = false;
+}
+$scope.changeI = function(){
+if ($scope.AhideI == false)
+   $scope.AhideI = true;
+else
+   $scope.AhideI = false;
+}
+$scope.changeJ = function(){
+if ($scope.AhideJ == false)
+   $scope.AhideJ = true;
+else
+   $scope.AhideJ = false;
+}
+$scope.changeK = function(){
+if ($scope.AhideK == false)
+   $scope.AhideK = true;
+else
+   $scope.AhideK = false;
+}
+$scope.changeL = function(){
+if ($scope.AhideL == false)
+   $scope.AhideL = true;
+else
+   $scope.AhideL = false;
+}
+$scope.changeM = function(){
+if ($scope.AhideM == false)
+   $scope.AhideM = true;
+else
+   $scope.AhideM = false;
+}
+$scope.changeN = function(){
+if ($scope.AhideN == false)
+   $scope.AhideN = true;
+else
+   $scope.AhideN = false;
+}
+$scope.changeO = function(){
+if ($scope.AhideO == false)
+   $scope.AhideO = true;
+else
+   $scope.AhideO = false;
+}
+$scope.changeP = function(){
+if ($scope.AhideP == false)
+   $scope.AhideP = true;
+else
+   $scope.AhideP = false;
+}
+})
+
+.controller('ECalendarCtrl', function($scope, $state, $http, $rootScope, $ionicSideMenuDelegate){
+    $scope.data = {};
+    $scope.test = 
+    url = ""
+    $rootScope.today = new Date().getTime();
+    $rootScope.nbSemaine = Math.round(((new Date().getTime() - $rootScope.BeginOfPregnancy.getTime()) / (1000 * 60 * 60 * 24)) / 7);
+    $scope.tes = function(){
+      console.log("test");
+    }
+       $scope.EhideA = true;
+       $scope.EhideAA = true;
+       $scope.EhideAAA = true;
+       $scope.EhideB = true;
+       $scope.EhideC = true;
+       $scope.EhideD = true;
+       $scope.EhideE = true;
+       $scope.EhideF = true;
+       $scope.EhideG = true;
+       $scope.EhideH = true;
+       $scope.EhideI = true;
+       $scope.EhideJ = true;
+       $scope.EhideK = true;
+       $scope.EhideL = true;
+       $scope.EhideM = true;
+       $scope.EhideN = true;
+       $scope.EhideO = true;
+       $scope.EhideP = true;
+
+
+$scope.changeA = function(){
+if ($scope.EhideA == false)
+   $scope.EhideA = true;
+else
+   $scope.EhideA = false;
+}
+$scope.changeAA = function(){
+if ($scope.EhideAA == false)
+   $scope.EhideAA = true;
+else
+   $scope.EhideAA = false;
+}
+$scope.changeAAA = function(){
+if ($scope.EhideAAA == false)
+   $scope.EhideAAA = true;
+else
+   $scope.EhideAAA = false;
+}
+$scope.changeB = function(){
+if ($scope.EhideB == false)
+   $scope.EhideB = true;
+else
+   $scope.EhideB = false;
+}
+$scope.changeC = function(){
+if ($scope.EhideC == false)
+   $scope.EhideC = true;
+else
+   $scope.EhideC = false;
+}
+$scope.changeD = function(){
+if ($scope.EhideD == false)
+   $scope.EhideD = true;
+else
+   $scope.EhideD = false;
+}
+$scope.changeE = function(){
+if ($scope.EhideE == false)
+   $scope.EhideE = true;
+else
+   $scope.EhideE = false;
+}
+$scope.changeF = function(){
+if ($scope.EhideF == false)
+   $scope.EhideF = true;
+else
+   $scope.EhideF = false;
+}
+$scope.changeG = function(){
+if ($scope.EhideG == false)
+   $scope.EhideG = true;
+else
+   $scope.EhideG = false;
+}
+$scope.changeH = function(){
+if ($scope.EhideH == false)
+   $scope.EhideH = true;
+else
+   $scope.EhideH = false;
+}
+$scope.changeI = function(){
+if ($scope.EhideI == false)
+   $scope.EhideI = true;
+else
+   $scope.EhideI = false;
+}
+$scope.changeJ = function(){
+if ($scope.EhideJ == false)
+   $scope.EhideJ = true;
+else
+   $scope.EhideJ = false;
+}
+$scope.changeK = function(){
+if ($scope.EhideK == false)
+   $scope.EhideK = true;
+else
+   $scope.EhideK = false;
+}
+$scope.changeL = function(){
+if ($scope.EhideL == false)
+   $scope.EhideL = true;
+else
+   $scope.EhideL = false;
+}
+$scope.changeM = function(){
+if ($scope.EhideM == false)
+   $scope.EhideM = true;
+else
+   $scope.EhideM = false;
+}
+$scope.changeN = function(){
+if ($scope.EhideN == false)
+   $scope.EhideN = true;
+else
+   $scope.EhideN = false;
+}
+$scope.changeO = function(){
+if ($scope.EhideO == false)
+   $scope.EhideO = true;
+else
+   $scope.EhideO = false;
+}
+$scope.changeP = function(){
+if ($scope.EhideP == false)
+   $scope.EhideP = true;
+else
+   $scope.EhideP = false;
+}
+})
 
 .controller('Step1Ctrl', function($scope, $state,  $http, $rootScope) {
   $scope.data = {};
@@ -963,6 +1634,7 @@ angular.module('starter.controllers', [])
   $scope.data = {};
   $scope.test = 
   url = ""
+  $scope.data.nb = 0;
   $scope.nb = function() {
     $rootScope.Alcool = $scope.data.nb;
     if ($rootScope.Alcool >= 0){
@@ -1691,13 +2363,17 @@ angular.module('starter.controllers', [])
       $scope.profil += $rootScope.PhlebitisAnswer;
 
     if ($rootScope.HighBloodPresure == 1)
+      $scope.profil += $rootScope.HighBloodPresureAnswer;
+    if ($rootScope.diabetesH == 1)
       $scope.profil += $rootScope.diabetesHAnswer;
 
     if ($rootScope.IMC < 17){
       $scope.profil += $rootScope.IMCLessAnswer;
     }
+    else if ($rootScope.IMC > 22 && $rootScope.diabetesH == 1) {
+      $scope.profil += "surpoid+diabete";
+    }
     else if ($rootScope.IMC > 22 && $rootScope.IMC <= 28){
-      console.log("Toto");
       $scope.profil += $rootScope.IMCHighAnswer;
     }
     else if ($rootScope.IMC > 28){
@@ -1739,7 +2415,10 @@ angular.module('starter.controllers', [])
     $scope.data = {};
   $scope.test = 
     url = ""
-    
+       
+    $scope.continue = function() {
+        $state.go('app.launch');
+      }
     $scope.login = function() {
       $state.go('app.launch');
     }
@@ -1747,6 +2426,8 @@ angular.module('starter.controllers', [])
       $state.go('step1');
     }
     $scope.french = function(){
+      $state.go('step1');
+    }
       $rootScope.langage = 1;
       //home
       $rootScope.account = "Je possède déjà un compte";
@@ -2000,9 +2681,6 @@ angular.module('starter.controllers', [])
       $rootScope.ModifDatePregnant = "Bonjour, rentrer votre date de début de grossesse corrigé"
       $rootScope.DeliveryDatePregnant = "Rentrez votre date d'accouchement";
 
-
-      $state.go('step1');
-    }
     $scope.english = function(){
       $rootScope.langage = 2;
       //home

@@ -37,6 +37,57 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
+ .state('app',{
+    url: '/app',
+    abstract: true,
+    templateUrl: 'templates/menu.html',
+    controller: 'AppCtrl'
+  })
+ .state('app.launch', {
+      url: '/launch',
+      views: {
+          'menuContent':{
+          templateUrl: 'templates/launch.html',
+          controller: 'LaunchCtrl'
+          }
+        }
+})
+ .state('app.ModifDateOfPregnant', {
+      url: '/ModifDateOfPregnant',
+      views: {
+          'menuContent':{
+          templateUrl: 'templates/ModifDateOfPregnant.html',
+          controller: 'LaunchCtrl'
+      }
+    }
+})
+ .state('app.ACalendar', {
+      url: '/ACalendar',
+      views: {
+          'menuContent':{
+          templateUrl: 'templates/ACalendar.html',
+          controller: 'ACalendarCtrl'
+}
+    } 
+    })
+.state('app.ECalendar', {
+      url: '/ECalendar',
+      views: {
+          'menuContent':{
+          templateUrl: 'templates/ECalendar.html',
+          controller: 'ECalendarCtrl'
+}
+    } 
+    })
+.state('app.Mcalendar', {
+      url: '/Mcalendar',
+      views: {
+          'menuContent':{
+          templateUrl: 'templates/MCalendar.html',
+          controller: 'MCalendarCtrl'
+}
+}
+})
 
   // Each tab has its own nav history stack:
 .state('home', {

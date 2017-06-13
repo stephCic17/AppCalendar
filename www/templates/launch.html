@@ -1,0 +1,20 @@
+<ion-view view-title=Ciconia name=launch-view>
+  <ion-content class=padding> 
+  	<div class="derniereRegle">
+		<div ng-if="LastMenstruation">
+			<h3>{{hello}}<span ng-bind=WeekPregnant></span>{{numberOfWeek}}</h3>
+			<p><span ng-bind=termeDate></span></p>
+		</div>
+		<div ng-if="!LastMenstruation">
+			<form name="gro" ng-submit="submit(gros)">
+				<label><p>{{helloFirst}}
+				</p></label>
+				<p>{{DateOfMenstruation}}</p>
+				<input type="date" class="center" name="date" placeholder="JJ/MM/AAAA" ng-model="gros">
+				<br>
+				<button type="Submit">Ok</button>
+			</form>
+		</div>
+	</div>
+  </ion-content>
+</ion-view>
